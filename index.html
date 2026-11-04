@@ -1,968 +1,629 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="meta-title">IRINA HAIR STYLIST — Свадебные прически в Батуми</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-dark: #1e1319;
-      --bg-pink-soft: #f7d6e0;
-      --bg-card: rgba(45, 28, 38, 0.7);
-      --pink-accent: #e8a5b8;
-      --pink-light: #fbebf0;
-      --gold-accent: #e3be96;
-      --text-white: #ffffff;
-      --text-muted: #c9b3bc;
-      --font-title: 'Cormorant Garamond', Georgia, serif;
-      --font-body: 'Montserrat', sans-serif;
-      --shadow-glam: 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(232, 165, 184, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 85% 60%, rgba(227, 190, 150, 0.12) 0%, transparent 45%);
-      color: var(--text-white);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: min(1200px, calc(100% - 32px));
-      margin-inline: auto;
-    }
-
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(30, 19, 25, 0.92);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(227, 190, 150, 0.2);
-      padding: 16px 0;
-    }
-
-    .nav-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-white);
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--gold-accent);
-      display: grid;
-      place-items: center;
-      font-family: var(--font-title);
-      font-size: 1.4rem;
-      color: var(--gold-accent);
-      background: rgba(227, 190, 150, 0.08);
-    }
-
-    .brand-text {
-      font-family: var(--font-title);
-      font-size: 1.05rem;
-      letter-spacing: 0.15em;
-      font-weight: 600;
-    }
-
-    .brand-text small {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: var(--gold-accent);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--gold-accent);
-    }
-
-    /* LANG SWITCHER */
-    .lang-switcher {
-      display: flex;
-      gap: 5px;
-      background: rgba(227, 190, 150, 0.1);
-      padding: 3px;
-      border-radius: 20px;
-      border: 1px solid rgba(227, 190, 150, 0.3);
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 5px 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 15px;
-      transition: 0.2s;
-    }
-
-    .lang-btn.active {
-      background: var(--gold-accent);
-      color: #1a0e14;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 26px;
-      border-radius: 40px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #e3be96 0%, #c19b70 100%);
-      color: #1a0e14 !important;
-      box-shadow: 0 6px 20px rgba(227, 190, 150, 0.3);
-    }
-
-    .btn-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(227, 190, 150, 0.5);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(227, 190, 150, 0.5);
-      color: var(--gold-accent) !important;
-    }
-
-    .btn-outline:hover {
-      background: rgba(227, 190, 150, 0.1);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 80px 0 90px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 50px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 18px;
-      border-radius: 30px;
-      border: 1px solid rgba(227, 190, 150, 0.3);
-      background: rgba(227, 190, 150, 0.08);
-      color: var(--gold-accent);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold-accent);
-      box-shadow: 0 0 10px var(--gold-accent);
-    }
-
-    .hero h1 {
-      font-family: var(--font-title);
-      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .hero h1 span {
-      color: var(--pink-accent);
-      font-style: italic;
-      text-transform: none;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 35px;
-      max-width: 500px;
-      font-weight: 300;
-    }
-
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .hero-photo-wrap {
-      position: relative;
-    }
-
-    .hero-photo-card {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      height: 540px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(227, 190, 150, 0.3);
-      box-shadow: var(--shadow-glam);
-    }
-
-    .hero-photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-photo-caption {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      padding: 14px 20px;
-      background: rgba(30, 19, 25, 0.8);
-      backdrop-filter: blur(12px);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      text-align: center;
-    }
-
-    .hero-photo-caption span {
-      font-family: var(--font-title);
-      font-size: 1.2rem;
-      color: var(--text-white);
-      display: block;
-    }
-
-    .hero-photo-caption small {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: var(--gold-accent);
-      text-transform: uppercase;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 90px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-accent);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-family: var(--font-title);
-      font-size: 2.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    /* CIRCLE CATEGORIES */
-    .circles-wrap {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 25px;
-      margin-bottom: 45px;
-    }
-
-    .circle-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--text-white);
-    }
-
-    .circle-thumb {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      padding: 3px;
-      border: 1px solid rgba(227, 190, 150, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .circle-thumb img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .circle-item:hover .circle-thumb, .circle-item.active .circle-thumb {
-      border-color: var(--gold-accent);
-      box-shadow: 0 0 20px rgba(227, 190, 150, 0.4);
-      transform: scale(1.05);
-    }
-
-    .circle-title {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .circle-item.active .circle-title {
-      color: var(--gold-accent);
-      font-weight: 600;
-    }
-
-    /* CARDS GRID */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-
-    .glam-card {
-      position: relative;
-      height: 400px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(227, 190, 150, 0.2);
-      box-shadow: var(--shadow-glam);
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
-
-    .glam-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--gold-accent);
-    }
-
-    .glam-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .glam-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .glam-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(20, 11, 16, 0.85) 0%, rgba(20, 11, 16, 0.1) 60%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .glam-card-tag {
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-      color: var(--text-white);
-      margin-bottom: 4px;
-    }
-
-    .glam-card-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-accent);
-    }
-
-    /* PINK SECTION */
-    .pink-box-section {
-      background: var(--bg-pink-soft);
-      color: #2b1722;
-      border-radius: 24px;
-      padding: 60px 40px;
-      margin: 40px 0;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-
-    .pink-box-section .section-subtitle {
-      color: #934c62;
-    }
-
-    .pink-box-section .section-title {
-      color: #2b1722;
-    }
-
-    .price-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 35px;
-    }
-
-    .price-tab-btn {
-      padding: 12px 26px;
-      border-radius: 30px;
-      border: 1px solid #d493a7;
-      background: transparent;
-      color: #2b1722;
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .price-tab-btn.active {
-      background: #2b1722;
-      color: var(--pink-light);
-      border-color: #2b1722;
-    }
-
-    .price-rows {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .price-row-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      border-bottom: 1px dashed rgba(43, 23, 34, 0.2);
-      font-size: 1rem;
-    }
-
-    .price-row-item strong {
-      font-size: 1.15rem;
-      color: #934c62;
-    }
-
-    /* BOOKING CARD */
-    .booking-card {
-      background: rgba(30, 19, 25, 0.85);
-      border: 1px solid rgba(227, 190, 150, 0.25);
-      border-radius: 24px;
-      padding: 45px;
-      max-width: 600px;
-      margin: 0 auto;
-      box-shadow: var(--shadow-glam);
-      backdrop-filter: blur(15px);
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold-accent);
-      margin-bottom: 8px;
-    }
-
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid rgba(227, 190, 150, 0.2);
-      background: rgba(15, 8, 12, 0.6);
-      color: var(--text-white);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .form-group input:focus, .form-group select:focus {
-      border-color: var(--gold-accent);
-    }
-
-    /* INSTAGRAM ICON STYLING */
-    .insta-icon {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      border-top: 1px solid rgba(227, 190, 150, 0.15);
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding-top: 40px;
-      }
-      .hero p { margin-inline: auto; }
-      .hero-btns { justify-content: center; }
-      nav { display: none; }
-      .pink-box-section { padding: 35px 20px; }
-      .booking-card { padding: 25px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRINA HAIR STYLIST — Свадебные прически в Батуми</title>
+<meta name="description" content="Свадебные и вечерние прически в Батуми. Сборы на дому, выезд, образ в 4 руки с визажистом. ул. 26 Мая, 52.">
+<meta name="theme-color" content="#1e1319">
+<meta property="og:title" content="IRINA HAIR STYLIST — Свадебные прически в Батуми">
+<meta property="og:description" content="Эксклюзивные свадебные и вечерние образы в Батуми.">
+<meta property="og:type" content="website">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-dark:#1e1319;--bg-pink-soft:#f7d6e0;--bg-card:rgba(45,28,38,.7);
+  --pink-accent:#e8a5b8;--pink-light:#fbebf0;--gold-accent:#e3be96;
+  --text-white:#fff;--text-muted:#c9b3bc;
+  --font-title:'Noto Serif Display','Cormorant Garamond',Georgia,serif;--font-body:'Manrope',system-ui,sans-serif;
+  --shadow-glam:0 15px 40px rgba(0,0,0,.4);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+body{
+  background-color:var(--bg-dark);
+  background-image:radial-gradient(circle at 15% 20%,rgba(232,165,184,.15) 0%,transparent 40%),radial-gradient(circle at 85% 60%,rgba(227,190,150,.12) 0%,transparent 45%);
+  color:var(--text-white);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+button,input,select{font-family:inherit}
+.container{width:min(1200px,calc(100% - 32px));margin-inline:auto}
+:focus-visible{outline:2px solid var(--gold-accent);outline-offset:3px}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(30,19,25,.92);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px);border-bottom:1px solid rgba(227,190,150,.2);padding:14px 0}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-actions{display:flex;align-items:center;gap:15px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text-white)}
+.brand-logo{width:42px;height:42px;flex:none;border-radius:50%;border:1px solid var(--gold-accent);display:grid;place-items:center;font-family:var(--font-title);font-size:1.4rem;color:var(--gold-accent);background:rgba(227,190,150,.08)}
+.brand-text{font-family:var(--font-title);font-size:1.05rem;letter-spacing:.15em;font-weight:600;line-height:1.3}
+.brand-text small{display:block;font-family:var(--font-body);font-size:.6rem;letter-spacing:.2em;color:var(--gold-accent)}
+nav{display:flex;align-items:center;gap:25px}
+nav a{text-decoration:none;color:var(--text-muted);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;white-space:nowrap}
+nav a:hover{color:var(--gold-accent)}
+
+.lang-switcher{display:flex;gap:5px;background:rgba(227,190,150,.1);padding:3px;border-radius:20px;border:1px solid rgba(227,190,150,.3)}
+.lang-btn{background:transparent;border:none;color:var(--text-muted);padding:5px 10px;font-size:.75rem;font-weight:600;cursor:pointer;border-radius:15px;transition:background .25s,color .25s}
+.lang-btn.active{background:var(--gold-accent);color:#1a0e14}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:40px;font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background-color .3s}
+.btn-sm{padding:10px 20px;font-size:.72rem}
+.btn-gold{background:linear-gradient(135deg,#e3be96 0%,#c19b70 100%);color:#1a0e14!important;box-shadow:0 6px 20px rgba(227,190,150,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(227,190,150,.5)}
+.btn-outline{background:transparent;border:1px solid rgba(227,190,150,.5);color:var(--gold-accent)!important}
+.btn-outline:hover{background:rgba(227,190,150,.1)}
+.btn:active{transform:translateY(0) scale(.98)}
+
+/* HERO */
+.hero{padding:80px 0 90px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:6px 18px;border-radius:30px;border:1px solid rgba(227,190,150,.3);background:rgba(227,190,150,.08);color:var(--gold-accent);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:25px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-accent);box-shadow:0 0 10px var(--gold-accent)}
+.hero h1{font-family:var(--font-title);font-size:clamp(2.4rem,5.4vw,5rem);line-height:1.02;letter-spacing:-.02em;margin-bottom:22px;font-weight:300}
+.hero h1 span{color:var(--pink-accent);font-style:italic;font-weight:400}
+.hero p{color:var(--text-muted);font-size:1rem;margin-bottom:35px;max-width:500px;font-weight:300}
+.hero-btns{display:flex;flex-wrap:wrap;gap:15px}
+.hero-photo-card{position:relative;width:100%;max-width:420px;height:540px;margin:0 auto;border-radius:20px;overflow:hidden;border:1px solid rgba(227,190,150,.3);box-shadow:var(--shadow-glam);background:#2d1c26}
+.hero-photo-card img{width:100%;height:100%;object-fit:cover}
+.hero-photo-caption{position:absolute;bottom:20px;left:20px;right:20px;padding:14px 20px;background:rgba(30,19,25,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-radius:12px;border:1px solid rgba(255,255,255,.15);text-align:center}
+.hero-photo-caption span{font-family:var(--font-title);font-size:1.2rem;display:block}
+.hero-photo-caption small{font-size:.7rem;letter-spacing:.2em;color:var(--gold-accent);text-transform:uppercase}
+
+/* SECTIONS */
+.section{padding:90px 0}
+.section-head{text-align:center;margin-bottom:45px}
+.section-subtitle{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-accent);display:block;margin-bottom:8px}
+.section-title{font-family:var(--font-title);font-size:clamp(2rem,5.5vw,3.4rem);letter-spacing:-.015em;font-weight:300;line-height:1.1}
+
+/* CATEGORIES */
+.circles-wrap{display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-bottom:45px}
+.circle-item{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;background:none;border:none;color:var(--text-white)}
+.circle-thumb{width:90px;height:90px;border-radius:50%;padding:3px;border:1px solid rgba(227,190,150,.3);transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.circle-thumb img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.circle-item:hover .circle-thumb,.circle-item.active .circle-thumb{border-color:var(--gold-accent);box-shadow:0 0 20px rgba(227,190,150,.4);transform:scale(1.05)}
+.circle-title{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);transition:color .3s}
+.circle-item.active .circle-title{color:var(--gold-accent);font-weight:600}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.glam-card{position:relative;height:400px;border-radius:16px;overflow:hidden;border:1px solid rgba(227,190,150,.2);box-shadow:var(--shadow-glam);background:#2d1c26;transition:transform .4s var(--ease),opacity .3s ease,border-color .4s}
+.glam-card[hidden]{display:none}
+.glam-card.is-out{opacity:0;transform:scale(.95);pointer-events:none}
+.glam-card:hover{transform:translateY(-6px);border-color:var(--gold-accent)}
+.glam-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.glam-card:hover img{transform:scale(1.05)}
+.glam-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,11,16,.85) 0%,rgba(20,11,16,.1) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:25px;text-align:center}
+.glam-card-tag{font-family:var(--font-title);font-size:1.75rem;font-style:italic;font-weight:300;margin-bottom:4px}
+.glam-card-sub{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-accent)}
+
+/* PRICES */
+.pink-box-section{background:var(--bg-pink-soft);color:#2b1722;border-radius:24px;padding:60px 40px;margin:40px 0;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.pink-box-section .section-subtitle{color:#934c62}
+.price-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:35px}
+.price-tab-btn{padding:12px 26px;border-radius:30px;border:1px solid #d493a7;background:transparent;color:#2b1722;font-weight:600;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s}
+.price-tab-btn.active{background:#2b1722;color:var(--pink-light);border-color:#2b1722}
+.price-rows{max-width:700px;margin:0 auto}
+.price-rows:not([hidden]){animation:fadeUp .45s var(--ease)}
+.price-row-item{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px dashed rgba(43,23,34,.2)}
+.price-row-item strong{font-family:var(--font-title);font-size:1.35rem;font-weight:500;color:#934c62;white-space:nowrap}
+
+/* LOCATION — compact card */
+.section-compact{padding:20px 0 70px}
+.loc-card{display:grid;grid-template-columns:170px 1fr;max-width:700px;margin:0 auto;border-radius:20px;overflow:hidden;background:var(--bg-card);border:1px solid rgba(227,190,150,.22);box-shadow:var(--shadow-glam)}
+.loc-map{position:relative;color:var(--gold-accent);background:linear-gradient(160deg,rgba(232,165,184,.16),rgba(227,190,150,.05));border-right:1px solid rgba(227,190,150,.15)}
+.loc-map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin-ring{fill:none;stroke:currentColor;stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:pulse 2.8s ease-out infinite}
+.loc-info{padding:28px 32px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.loc-title{font-family:var(--font-title);font-size:2.1rem;font-weight:300;letter-spacing:-.01em;line-height:1.1}
+.loc-address{font-size:1rem;color:var(--pink-light);margin-top:6px}
+.loc-note{font-size:.85rem;color:var(--text-muted);font-weight:300}
+.loc-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* BOOKING VIA INSTAGRAM */
+.book-ig{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;max-width:520px;margin:0 auto}
+.book-text{font-family:var(--font-title);font-size:clamp(1.3rem,3.4vw,1.8rem);font-weight:300;line-height:1.3}
+.book-hint{font-size:.9rem;color:var(--text-muted);font-weight:300}
+.ig-btn{margin-top:22px;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;color:var(--gold-accent);border:1px solid rgba(227,190,150,.5);background:rgba(227,190,150,.08);transition:transform .3s var(--ease),background .3s,color .3s,box-shadow .3s}
+.ig-btn .insta-icon{width:36px;height:36px}
+.ig-btn:hover{background:linear-gradient(135deg,#e3be96,#c19b70);color:#1a0e14;transform:translateY(-3px);box-shadow:0 12px 30px rgba(227,190,150,.4)}
+.ig-btn:active{transform:scale(.93)}
+.book-handle{font-size:.8rem;letter-spacing:.12em;color:var(--text-muted);margin-top:6px}
+.insta-icon{width:18px;height:18px;fill:currentColor}
+
+footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.15);color:var(--text-muted);font-size:.8rem;letter-spacing:.1em}
+
+/* CURSOR FX */
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:150}
+
+/* MOTION */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+
+@media (max-width:850px){
+  .nav-wrap{flex-wrap:wrap}
+  nav{order:3;width:100%;justify-content:center;gap:18px;overflow-x:auto;padding-top:10px}
+  nav a{font-size:.7rem}
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:40px}
+  .hero p{margin-inline:auto}
+  .hero-btns{justify-content:center}
+  .hero-photo-card{height:460px}
+  .section{padding:60px 0}
+  .pink-box-section{padding:35px 20px}
+}
+@media (max-width:560px){
+  .brand-text small{display:none}
+  .brand-text{font-size:.9rem;letter-spacing:.1em}
+  .header-actions .btn{display:none}
+  .loc-card{grid-template-columns:1fr}
+  .loc-map{height:110px;border-right:none;border-bottom:1px solid rgba(227,190,150,.15)}
+  .loc-info{padding:24px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container nav-wrap">
-      <a href="#" class="brand">
-        <div class="brand-logo">I</div>
-        <div class="brand-text">
-          IRINA HAIR STYLIST
-          <small>BATUMI · GEORGIA</small>
-        </div>
-      </a>
-      <nav>
-        <a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a>
-        <a href="#prices" data-i18n="nav_prices">Услуги & Прайс</a>
-        <a href="#location" data-i18n="nav_location">Локация</a>
-        <a href="#booking" data-i18n="nav_booking">Запись</a>
-      </nav>
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <div class="lang-switcher">
-          <button class="lang-btn active" onclick="setLang('ru')">RU</button>
-          <button class="lang-btn" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="#booking" class="btn btn-gold" data-i18n="btn_book">Записаться</a>
+<header>
+  <div class="container nav-wrap">
+    <a href="#top" class="brand">
+      <div class="brand-logo">I</div>
+      <div class="brand-text">IRINA HAIR STYLIST<small>BATUMI · GEORGIA</small></div>
+    </a>
+    <nav aria-label="Меню">
+      <a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a>
+      <a href="#prices" data-i18n="nav_prices">Услуги & Прайс</a>
+      <a href="#location" data-i18n="nav_location">Локация</a>
+      <a href="#booking" data-i18n="nav_booking">Запись</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
+      <a href="#booking" class="btn btn-gold" data-i18n="btn_book">Записаться</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- HERO -->
-  <main class="container">
-    <section class="hero">
-      <div>
-        <div class="badge">
-          <span class="badge-dot"></span>
-          <span data-i18n="badge_text">Запись на 2026 открыта</span>
-        </div>
-        <h1 data-i18n="hero_title">IRINA HAIR STYLIST — <span>свадебные прически</span> в Батуми</h1>
-        <p data-i18n="hero_desc">Эксклюзивные свадебные и вечерние образы в Батуми. Сборы на дому и выездные сессии в 4 руки с визажистом.</p>
-        <div class="hero-btns">
-          <a href="#booking" class="btn btn-gold" data-i18n="btn_book_date">Забронировать дату</a>
-          <a href="https://www.instagram.com/nikolaeva_irina_hair?exln=MW15ZDN3NW9yNzVuag==" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px;">
-            <svg class="insta-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+<main class="container" id="top">
+  <section class="hero">
+    <div>
+      <div class="badge"><span class="badge-dot"></span><span data-i18n="badge_text">Запись на 2026 открыта</span></div>
+      <h1 data-i18n="hero_title">IRINA HAIR STYLIST — <span>свадебные прически</span> в Батуми</h1>
+      <p data-i18n="hero_desc">Эксклюзивные свадебные и вечерние образы в Батуми. Сборы на дому и выездные сессии в 4 руки с визажистом.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-gold" data-i18n="btn_book_date">Забронировать дату</a>
+        <a href="https://www.instagram.com/nikolaeva_irina_hair?exln=MW15ZDN3NW9yNzVuag==" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <svg class="insta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             Instagram
-          </a>
-        </div>
+        </a>
       </div>
-      <div class="hero-photo-wrap">
-        <div class="hero-photo-card">
-          <img src="images/avatar.jpg" alt="Ирина Николаева" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80'">
-          <div class="hero-photo-caption">
-            <span>Irina Nikolaeva</span>
-            <small>Lead Bridal Stylist</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section class="section" id="portfolio">
-      <div class="section-head">
-        <span class="section-subtitle" data-i18n="port_sub">Portfolio</span>
-        <h2 class="section-title" data-i18n="port_title">Категории Причесок</h2>
-      </div>
-
-      <div class="circles-wrap">
-        <button class="circle-item active" onclick="filterGallery('all', event)">
-          <div class="circle-thumb"><img src="images/photo1.jpg" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=200&q=80'"></div>
-          <span class="circle-title" data-i18n="cat_all">Все</span>
-        </button>
-        <button class="circle-item" onclick="filterGallery('wedding', event)">
-          <div class="circle-thumb"><img src="images/photo2.jpg" onerror="this.src='https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=200&q=80'"></div>
-          <span class="circle-title" data-i18n="cat_wedding">Свадебные</span>
-        </button>
-        <button class="circle-item" onclick="filterGallery('curls', event)">
-          <div class="circle-thumb"><img src="images/photo3.jpg" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80'"></div>
-          <span class="circle-title" data-i18n="cat_curls">Локоны</span>
-        </button>
-        <button class="circle-item" onclick="filterGallery('low', event)">
-          <div class="circle-thumb"><img src="images/photo4.jpg" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=200&q=80'"></div>
-          <span class="circle-title" data-i18n="cat_low">Низкий пучок</span>
-        </button>
-      </div>
-
-      <div class="cards-grid">
-        <div class="glam-card wedding low">
-          <img src="images/photo1.jpg" alt="Свадебный пучок" onerror="this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80'">
-          <div class="glam-card-overlay">
-            <div class="glam-card-tag" data-i18n="card_1_title">Bridal Style</div>
-            <div class="glam-card-sub" data-i18n="card_1_sub">Низкий элегантный пучок</div>
-          </div>
-        </div>
-        <div class="glam-card curls">
-          <img src="images/photo2.jpg" alt="Локоны" onerror="this.src='https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80'">
-          <div class="glam-card-overlay">
-            <div class="glam-card-tag" data-i18n="card_2_title">Hollywood Waves</div>
-            <div class="glam-card-sub" data-i18n="card_2_sub">Голливудская волна</div>
-          </div>
-        </div>
-        <div class="glam-card wedding">
-          <img src="images/photo3.jpg" alt="Текстурный пучок" onerror="this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80'">
-          <div class="glam-card-overlay">
-            <div class="glam-card-tag" data-i18n="card_3_title">Soft Style</div>
-            <div class="glam-card-sub" data-i18n="card_3_sub">Воздушный пучок</div>
-          </div>
-        </div>
-        <div class="glam-card curls">
-          <img src="images/photo4.jpg" alt="Мальвинка" onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80'">
-          <div class="glam-card-overlay">
-            <div class="glam-card-tag" data-i18n="card_4_title">Studio Style</div>
-            <div class="glam-card-sub" data-i18n="card_4_sub">Свадебная мальвинка</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICES -->
-    <section class="pink-box-section" id="prices">
-      <div class="section-head">
-        <span class="section-subtitle" data-i18n="price_sub">Price List</span>
-        <h2 class="section-title" data-i18n="price_title">Прайс-Лист Услуг</h2>
-      </div>
-
-      <div class="price-tabs">
-        <button class="price-tab-btn active" onclick="switchPrice('hair')" data-i18n="tab_hair">Только прическа</button>
-        <button class="price-tab-btn" onclick="switchPrice('full')" data-i18n="tab_full">Образ в 4 руки</button>
-      </div>
-
-      <div class="price-rows" id="price-hair">
-        <div class="price-row-item">
-          <span data-i18n="p1">Свадебная прическа</span>
-          <strong>250 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="p2">Прическа для гостя / вечерняя</span>
-          <strong>200 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="p3">Выезд в пределах Батуми</span>
-          <strong>+50 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="p4">Ранние сборы (до 08:00)</span>
-          <strong>+50 GEL</strong>
-        </div>
-      </div>
-
-      <div class="price-rows" id="price-full" style="display: none;">
-        <div class="price-row-item">
-          <span data-i18n="f1">Свадебный полный образ (Стилист + Визажист)</span>
-          <strong>500 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="f2">Вечерний полный образ для гостя</span>
-          <strong>400 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="f3">Выезд в пределах Батуми (2 мастера)</span>
-          <strong>+100 GEL</strong>
-        </div>
-        <div class="price-row-item">
-          <span data-i18n="f4">Ранние сборы до 08:00 (2 мастера)</span>
-          <strong>+100 GEL</strong>
-        </div>
-      </div>
-    </section>
-
-    <!-- LOCATION (52 26 May St, Batumi) -->
-    <section class="section" id="location" style="text-align: center;">
-      <div class="section-head">
-        <span class="section-subtitle" data-i18n="loc_sub">Location</span>
-        <h2 class="section-title" data-i18n="loc_title">Студия в Батуми</h2>
-        <p style="color: var(--text-muted); margin-top: 10px;" data-i18n="loc_desc">ул. 26 Мая, 52 · Принимаю в студии или выезжаю на дом.</p>
-      </div>
-      <div style="border-radius: 20px; overflow: hidden; border: 1px solid rgba(227, 190, 150, 0.3); max-width: 900px; margin: 0 auto; height: 380px;">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=41.6450333,41.6337767&hl=ru&z=17&output=embed"></iframe>
-      </div>
-    </section>
-
-    <!-- BOOKING -->
-    <section class="section" id="booking">
-      <div class="section-head">
-        <span class="section-subtitle" data-i18n="book_sub">Appointment</span>
-        <h2 class="section-title" data-i18n="book_title">Онлайн-Запись</h2>
-      </div>
-
-      <div class="booking-card">
-        <form onsubmit="sendBooking(event)">
-          <div class="form-group">
-            <label data-i18n="form_name">Ваше Имя</label>
-            <input type="text" id="name" required placeholder="Екатерина">
-          </div>
-          <div class="form-group">
-            <label data-i18n="form_phone">Телефон / Telegram</label>
-            <input type="text" id="phone" required placeholder="+995 ...">
-          </div>
-          <div class="form-group">
-            <label data-i18n="form_date">Желаемая Дата</label>
-            <input type="date" id="date" required>
-          </div>
-          <div class="form-group">
-            <label data-i18n="form_service">Формат Услуги</label>
-            <select id="service">
-              <option data-i18n="opt1">Свадебная прическа (250 GEL)</option>
-              <option data-i18n="opt2">Прическа для гостя (200 GEL)</option>
-              <option data-i18n="opt3">Свадебный образ в 4 руки (500 GEL)</option>
-              <option data-i18n="opt4">Вечерний образ в 4 руки (400 GEL)</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 15px;" data-i18n="form_btn">Связаться в Instagram</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer id="contacts">
-    <div class="container">
-      <p>© IRINA HAIR STYLIST (@nikolaeva_irina_hair) · ул. 26 Мая, 52 · Batumi, Georgia</p>
     </div>
-  </footer>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-card">
+        <img src="images/avatar.jpg" width="420" height="540" fetchpriority="high" decoding="async" alt="Ирина Николаева" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80'">
+        <div class="hero-photo-caption"><span>Irina Nikolaeva</span><small>Lead Bridal Stylist</small></div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const translations = {
-      ru: {
-        meta_title: "IRINA HAIR STYLIST — Свадебные прически в Батуми",
-        nav_portfolio: "Портфолио",
-        nav_prices: "Услуги & Прайс",
-        nav_location: "Локация",
-        nav_booking: "Запись",
-        btn_book: "Записаться",
-        badge_text: "Запись на 2026 открыта",
-        hero_title: "IRINA HAIR STYLIST — <span>свадебные прически</span> в Батуми",
-        hero_desc: "Эксклюзивные свадебные и вечерние образы в Батуми. Сборы на дому и выездные сессии в 4 руки с визажистом.",
-        btn_book_date: "Забронировать дату",
-        port_sub: "Portfolio",
-        port_title: "Категории Причесок",
-        cat_all: "Все",
-        cat_wedding: "Свадебные",
-        cat_curls: "Локоны",
-        cat_low: "Низкий пучок",
-        card_1_title: "Bridal Style",
-        card_1_sub: "Низкий элегантный пучок",
-        card_2_title: "Hollywood Waves",
-        card_2_sub: "Голливудская волна",
-        card_3_title: "Soft Style",
-        card_3_sub: "Воздушный пучок",
-        card_4_title: "Studio Style",
-        card_4_sub: "Свадебная мальвинка",
-        price_sub: "Price List",
-        price_title: "Прайс-Лист Услуг",
-        tab_hair: "Только прическа",
-        tab_full: "Образ в 4 руки",
-        p1: "Свадебная прическа",
-        p2: "Прическа для гостя / вечерняя",
-        p3: "Выезд в пределах Батуми",
-        p4: "Ранние сборы (до 08:00)",
-        f1: "Свадебный полный образ (Стилист + Визажист)",
-        f2: "Вечерний полный образ для гостя",
-        f3: "Выезд в пределах Батуми (2 мастера)",
-        f4: "Ранние сборы до 08:00 (2 мастера)",
-        loc_sub: "Location",
-        loc_title: "Студия в Батуми",
-        loc_desc: "ул. 26 Мая, 52 · Принимаю в студии или выезжаю на дом.",
-        book_sub: "Appointment",
-        book_title: "Онлайн-Запись",
-        form_name: "Ваше Имя",
-        form_phone: "Телефон / Telegram",
-        form_date: "Желаемая Дата",
-        form_service: "Формат Услуги",
-        opt1: "Свадебная прическа (250 GEL)",
-        opt2: "Прическа для гостя (200 GEL)",
-        opt3: "Свадебный образ в 4 руки (500 GEL)",
-        opt4: "Вечерний образ в 4 руки (400 GEL)",
-        form_btn: "Связаться в Instagram"
-      },
-      en: {
-        meta_title: "IRINA HAIR STYLIST — Bridal Hairstyles in Batumi",
-        nav_portfolio: "Portfolio",
-        nav_prices: "Services & Pricing",
-        nav_location: "Location",
-        nav_booking: "Booking",
-        btn_book: "Book Now",
-        badge_text: "2026 Bookings Open",
-        hero_title: "IRINA HAIR STYLIST — <span>bridal hairstyles</span> in Batumi",
-        hero_desc: "Exclusive bridal and evening looks in Batumi. Home visits and 4-hands sessions with a makeup artist.",
-        btn_book_date: "Book a Date",
-        port_sub: "Portfolio",
-        port_title: "Hair Categories",
-        cat_all: "All",
-        cat_wedding: "Bridal",
-        cat_curls: "Curls",
-        cat_low: "Low Bun",
-        card_1_title: "Bridal Style",
-        card_1_sub: "Elegant low bun",
-        card_2_title: "Hollywood Waves",
-        card_2_sub: "Classic waves",
-        card_3_title: "Soft Style",
-        card_3_sub: "Airy textured bun",
-        card_4_title: "Studio Style",
-        card_4_sub: "Half-up hairstyle",
-        price_sub: "Price List",
-        price_title: "Services & Pricing",
-        tab_hair: "Hair Only",
-        tab_full: "4-Hands Look",
-        p1: "Bridal Hairstyle",
-        p2: "Guest / Evening Hairstyle",
-        p3: "Batumi City Outcall",
-        p4: "Early Morning (before 08:00)",
-        f1: "Bridal Full Look (Stylist + Makeup)",
-        f2: "Guest Full Look (4-Hands)",
-        f3: "Batumi City Outcall (2 Artists)",
-        f4: "Early Morning (2 Artists, before 08:00)",
-        loc_sub: "Location",
-        loc_title: "Studio in Batumi",
-        loc_desc: "52 26 May St · Available at the studio or for home calls.",
-        book_sub: "Appointment",
-        book_title: "Online Booking",
-        form_name: "Your Name",
-        form_phone: "Phone / Telegram",
-        form_date: "Preferred Date",
-        form_service: "Service Format",
-        opt1: "Bridal Hairstyle (250 GEL)",
-        opt2: "Guest Hairstyle (200 GEL)",
-        opt3: "Bridal 4-Hands Look (500 GEL)",
-        opt4: "Guest 4-Hands Look (400 GEL)",
-        form_btn: "Contact via Instagram"
-      }
-    };
+  <section class="section" id="portfolio">
+    <div class="section-head reveal">
+      <span class="section-subtitle" data-i18n="port_sub">Portfolio</span>
+      <h2 class="section-title" data-i18n="port_title">Категории Причесок</h2>
+    </div>
 
-    function setLang(lang) {
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+    <div class="circles-wrap" id="filters">
+      <button type="button" class="circle-item active" data-filter="all" aria-pressed="true">
+        <div class="circle-thumb"><img src="images/photo1.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=200&q=80'"></div>
+        <span class="circle-title" data-i18n="cat_all">Все</span>
+      </button>
+      <button type="button" class="circle-item" data-filter="wedding" aria-pressed="false">
+        <div class="circle-thumb"><img src="images/photo2.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=200&q=80'"></div>
+        <span class="circle-title" data-i18n="cat_wedding">Свадебные</span>
+      </button>
+      <button type="button" class="circle-item" data-filter="curls" aria-pressed="false">
+        <div class="circle-thumb"><img src="images/photo3.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80'"></div>
+        <span class="circle-title" data-i18n="cat_curls">Локоны</span>
+      </button>
+      <button type="button" class="circle-item" data-filter="low" aria-pressed="false">
+        <div class="circle-thumb"><img src="images/photo4.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=200&q=80'"></div>
+        <span class="circle-title" data-i18n="cat_low">Низкий пучок</span>
+      </button>
+    </div>
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-      document.title = translations[lang].meta_title;
+    <div class="cards-grid">
+      <div class="glam-card wedding low">
+        <img src="images/photo1.jpg" alt="Свадебный пучок" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80'">
+        <div class="glam-card-overlay"><div class="glam-card-tag" data-i18n="card_1_title">Bridal Style</div><div class="glam-card-sub" data-i18n="card_1_sub">Низкий элегантный пучок</div></div>
+      </div>
+      <div class="glam-card curls">
+        <img src="images/photo2.jpg" alt="Локоны" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80'">
+        <div class="glam-card-overlay"><div class="glam-card-tag" data-i18n="card_2_title">Hollywood Waves</div><div class="glam-card-sub" data-i18n="card_2_sub">Голливудская волна</div></div>
+      </div>
+      <div class="glam-card wedding">
+        <img src="images/photo3.jpg" alt="Текстурный пучок" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80'">
+        <div class="glam-card-overlay"><div class="glam-card-tag" data-i18n="card_3_title">Soft Style</div><div class="glam-card-sub" data-i18n="card_3_sub">Воздушный пучок</div></div>
+      </div>
+      <div class="glam-card curls">
+        <img src="images/photo4.jpg" alt="Мальвинка" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80'">
+        <div class="glam-card-overlay"><div class="glam-card-tag" data-i18n="card_4_title">Studio Style</div><div class="glam-card-sub" data-i18n="card_4_sub">Свадебная мальвинка</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pink-box-section reveal" id="prices">
+    <div class="section-head">
+      <span class="section-subtitle" data-i18n="price_sub">Price List</span>
+      <h2 class="section-title" data-i18n="price_title">Прайс-Лист Услуг</h2>
+    </div>
+
+    <div class="price-tabs" role="tablist">
+      <button type="button" class="price-tab-btn active" role="tab" aria-selected="true" data-tab="hair" data-i18n="tab_hair">Только прическа</button>
+      <button type="button" class="price-tab-btn" role="tab" aria-selected="false" data-tab="full" data-i18n="tab_full">Образ в 4 руки</button>
+    </div>
+
+    <div class="price-rows" id="price-hair" role="tabpanel">
+      <div class="price-row-item"><span data-i18n="p1">Свадебная прическа</span><strong>250 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="p2">Прическа для гостя / вечерняя</span><strong>200 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="p3">Выезд в пределах Батуми</span><strong>+50 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="p4">Ранние сборы (до 08:00)</span><strong>+50 GEL</strong></div>
+    </div>
+
+    <div class="price-rows" id="price-full" role="tabpanel" hidden>
+      <div class="price-row-item"><span data-i18n="f1">Свадебный полный образ (Стилист + Визажист)</span><strong>500 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="f2">Вечерний полный образ для гостя</span><strong>400 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="f3">Выезд в пределах Батуми (2 мастера)</span><strong>+100 GEL</strong></div>
+      <div class="price-row-item"><span data-i18n="f4">Ранние сборы до 08:00 (2 мастера)</span><strong>+100 GEL</strong></div>
+    </div>
+  </section>
+
+  <!-- LOCATION: компактная минималистичная карточка вместо iframe -->
+  <section class="section-compact" id="location">
+    <div class="loc-card reveal">
+      <div class="loc-map" aria-hidden="true">
+        <svg viewBox="0 0 170 200" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="currentColor" stroke-width="1" opacity=".3">
+            <path d="M-10 55 L180 30"/><path d="M-10 105 L180 92"/><path d="M-10 150 L180 146"/>
+            <path d="M30 -10 L48 210"/><path d="M88 -10 L96 210"/><path d="M140 -10 L124 210"/>
+          </g>
+          <path d="M-10 182 Q30 170 70 182 T180 178" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+          <path d="M-10 194 Q30 182 70 194 T180 190" fill="none" stroke="currentColor" stroke-width="1" opacity=".28"/>
+          <circle class="pin-ring" cx="91" cy="100" r="9"/>
+          <circle cx="91" cy="100" r="5" fill="currentColor"/>
+          <circle cx="91" cy="100" r="1.8" fill="#1e1319"/>
+        </svg>
+      </div>
+      <div class="loc-info">
+        <h2 class="loc-title" data-i18n="loc_title">Студия в Батуми</h2>
+        <p class="loc-address" data-i18n="loc_addr">ул. 26 Мая, 52</p>
+        <p class="loc-note" data-i18n="loc_note">Принимаю в студии или выезжаю на дом.</p>
+        <div class="loc-actions">
+          <a class="btn btn-gold btn-sm" href="https://www.google.com/maps/search/?api=1&query=41.6450333,41.6337767" target="_blank" rel="noopener noreferrer" data-i18n="loc_map">Открыть карту</a>
+          <button type="button" class="btn btn-outline btn-sm" id="copy-addr" data-i18n="loc_copy_btn">Скопировать адрес</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="booking" style="padding-top:30px">
+    <div class="section-head reveal">
+      <span class="section-subtitle" data-i18n="book_sub">Appointment</span>
+      <h2 class="section-title" data-i18n="book_title">Бронирование</h2>
+    </div>
+    <div class="book-ig reveal">
+      <p class="book-text" data-i18n="book_text">Для бронирования свяжитесь со мной в Instagram.</p>
+      <p class="book-hint" data-i18n="book_hint">Напишите дату и нужную услугу в личные сообщения.</p>
+      <a class="ig-btn" id="ig-btn" href="https://www.instagram.com/nikolaeva_irina_hair?exln=MW15ZDN3NW9yNzVuag==" target="_blank" rel="noopener noreferrer" aria-label="Instagram @nikolaeva_irina_hair">
+        <svg class="insta-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <span class="book-handle">@nikolaeva_irina_hair</span>
+    </div>
+  </section>
+</main>
+
+<footer id="contacts">
+  <div class="container"><p>© IRINA HAIR STYLIST (@nikolaeva_irina_hair) · ул. 26 Мая, 52 · Batumi, Georgia</p></div>
+</footer>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  var T = {
+    ru: {
+      meta_title: "IRINA HAIR STYLIST — Свадебные прически в Батуми",
+      nav_portfolio: "Портфолио", nav_prices: "Услуги & Прайс", nav_location: "Локация", nav_booking: "Запись",
+      btn_book: "Записаться", badge_text: "Запись на 2026 открыта",
+      hero_title: "IRINA HAIR STYLIST — <span>свадебные прически</span> в Батуми",
+      hero_desc: "Эксклюзивные свадебные и вечерние образы в Батуми. Сборы на дому и выездные сессии в 4 руки с визажистом.",
+      btn_book_date: "Забронировать дату",
+      port_sub: "Portfolio", port_title: "Категории Причесок",
+      cat_all: "Все", cat_wedding: "Свадебные", cat_curls: "Локоны", cat_low: "Низкий пучок",
+      card_1_title: "Bridal Style", card_1_sub: "Низкий элегантный пучок",
+      card_2_title: "Hollywood Waves", card_2_sub: "Голливудская волна",
+      card_3_title: "Soft Style", card_3_sub: "Воздушный пучок",
+      card_4_title: "Studio Style", card_4_sub: "Свадебная мальвинка",
+      price_sub: "Price List", price_title: "Прайс-Лист Услуг",
+      tab_hair: "Только прическа", tab_full: "Образ в 4 руки",
+      p1: "Свадебная прическа", p2: "Прическа для гостя / вечерняя", p3: "Выезд в пределах Батуми", p4: "Ранние сборы (до 08:00)",
+      f1: "Свадебный полный образ (Стилист + Визажист)", f2: "Вечерний полный образ для гостя",
+      f3: "Выезд в пределах Батуми (2 мастера)", f4: "Ранние сборы до 08:00 (2 мастера)",
+      loc_title: "Студия в Батуми", loc_addr: "ул. 26 Мая, 52",
+      loc_note: "Принимаю в студии или выезжаю на дом.",
+      loc_map: "Открыть карту", loc_copy_btn: "Скопировать адрес", loc_copy: "ул. 26 Мая, 52, Батуми",
+      copied: "Скопировано", copy_fail: "Не удалось",
+      book_sub: "Appointment", book_title: "Бронирование",
+      book_text: "Для бронирования свяжитесь со мной в Instagram.",
+      book_hint: "Напишите дату и нужную услугу в личные сообщения."
+    },
+    en: {
+      meta_title: "IRINA HAIR STYLIST — Bridal Hairstyles in Batumi",
+      nav_portfolio: "Portfolio", nav_prices: "Services & Pricing", nav_location: "Location", nav_booking: "Booking",
+      btn_book: "Book Now", badge_text: "2026 Bookings Open",
+      hero_title: "IRINA HAIR STYLIST — <span>bridal hairstyles</span> in Batumi",
+      hero_desc: "Exclusive bridal and evening looks in Batumi. Home visits and 4-hands sessions with a makeup artist.",
+      btn_book_date: "Book a Date",
+      port_sub: "Portfolio", port_title: "Hair Categories",
+      cat_all: "All", cat_wedding: "Bridal", cat_curls: "Curls", cat_low: "Low Bun",
+      card_1_title: "Bridal Style", card_1_sub: "Elegant low bun",
+      card_2_title: "Hollywood Waves", card_2_sub: "Classic waves",
+      card_3_title: "Soft Style", card_3_sub: "Airy textured bun",
+      card_4_title: "Studio Style", card_4_sub: "Half-up hairstyle",
+      price_sub: "Price List", price_title: "Services & Pricing",
+      tab_hair: "Hair Only", tab_full: "4-Hands Look",
+      p1: "Bridal Hairstyle", p2: "Guest / Evening Hairstyle", p3: "Batumi City Outcall", p4: "Early Morning (before 08:00)",
+      f1: "Bridal Full Look (Stylist + Makeup)", f2: "Guest Full Look (4-Hands)",
+      f3: "Batumi City Outcall (2 Artists)", f4: "Early Morning (2 Artists, before 08:00)",
+      loc_title: "Studio in Batumi", loc_addr: "52 26 May St",
+      loc_note: "Available at the studio or for home calls.",
+      loc_map: "Open map", loc_copy_btn: "Copy address", loc_copy: "52 26 May St, Batumi",
+      copied: "Copied", copy_fail: "Failed",
+      book_sub: "Appointment", book_title: "Booking",
+      book_text: "To book, message me on Instagram.",
+      book_hint: "Send your date and the service you need in a direct message."
     }
+  };
 
-    function switchPrice(type) {
-      const btns = document.querySelectorAll('.price-tab-btn');
-      const hairBox = document.getElementById('price-hair');
-      const fullBox = document.getElementById('price-full');
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var lang = 'ru';
+  try { var saved = localStorage.getItem('lang'); if (saved && T[saved]) lang = saved; } catch (e) {}
 
-      if(type === 'hair') {
-        btns[0].classList.add('active');
-        btns[1].classList.remove('active');
-        hairBox.style.display = 'block';
-        fullBox.style.display = 'none';
+  /* ---------- Язык ---------- */
+  function setLang(l) {
+    lang = l;
+    $$('[data-i18n]').forEach(function (el) {
+      var v = T[l][el.getAttribute('data-i18n')];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = T[l][el.getAttribute('data-i18n-ph')]; });
+    $$('.lang-btn').forEach(function (b) {
+      var on = b.dataset.lang === l;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on);
+    });
+    document.documentElement.lang = l;
+    document.title = T[l].meta_title;
+    try { localStorage.setItem('lang', l); } catch (e) {}
+  }
+  $$('.lang-btn').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+
+  /* ---------- Фильтр портфолио (плавное появление/скрытие) ---------- */
+  $('#filters').addEventListener('click', function (e) {
+    var btn = e.target.closest('.circle-item');
+    if (!btn) return;
+    var cat = btn.dataset.filter;
+    $$('.circle-item').forEach(function (b) {
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-pressed', b === btn);
+    });
+    $$('.glam-card').forEach(function (c) {
+      var show = cat === 'all' || c.classList.contains(cat);
+      if (show) {
+        if (c.hidden) { c.hidden = false; void c.offsetWidth; }
+        c.classList.remove('is-out');
       } else {
-        btns[1].classList.add('active');
-        btns[0].classList.remove('active');
-        fullBox.style.display = 'block';
-        hairBox.style.display = 'none';
+        c.classList.add('is-out');
+        setTimeout(function () { if (c.classList.contains('is-out')) c.hidden = true; }, 300);
       }
-    }
+    });
+  });
 
-    function filterGallery(category, evt) {
-      const circleBtns = document.querySelectorAll('.circle-item');
-      circleBtns.forEach(btn => btn.classList.remove('active'));
-      evt.currentTarget.classList.add('active');
-
-      const cards = document.querySelectorAll('.glam-card');
-      cards.forEach(card => {
-        if(category === 'all' || card.classList.contains(category)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+  /* ---------- Вкладки прайса ---------- */
+  $$('.price-tab-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var type = b.dataset.tab;
+      $$('.price-tab-btn').forEach(function (x) {
+        var on = x === b;
+        x.classList.toggle('active', on);
+        x.setAttribute('aria-selected', on);
       });
+      $$('.price-rows').forEach(function (p) { p.hidden = p.id !== 'price-' + type; });
+    });
+  });
+
+  /* ---------- Буфер обмена ---------- */
+  function legacyCopy(t) {
+    var a = document.createElement('textarea');
+    a.value = t; a.setAttribute('readonly', '');
+    a.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(a); a.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    a.remove();
+    return ok;
+  }
+  function copyText(t) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return legacyCopy(t); });
+    }
+    return Promise.resolve(legacyCopy(t));
+  }
+  /* ---------- Адрес ---------- */
+  $('#copy-addr').addEventListener('click', function () {
+    var b = this;
+    copyText(T[lang].loc_copy).then(function (ok) {
+      b.textContent = T[lang][ok ? 'copied' : 'copy_fail'];
+      clearTimeout(b._t);
+      b._t = setTimeout(function () { b.textContent = T[lang].loc_copy_btn; }, 1800);
+    });
+  });
+
+  /* ---------- Instagram: лёгкий звук клика ---------- */
+  var actx;
+  function clickSound() {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      var t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(1500, t);
+      o.frequency.exponentialRampToValueAtTime(700, t + .05);
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.exponentialRampToValueAtTime(.12, t + .004);
+      g.gain.exponentialRampToValueAtTime(.0001, t + .09);
+      o.connect(g); g.connect(actx.destination);
+      o.start(t); o.stop(t + .1);
+    } catch (e) {}
+  }
+  $('#ig-btn').addEventListener('click', clickSound);
+
+  /* ---------- Плавное появление блоков ---------- */
+  var items = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- Расчёска и фен за курсором ---------- */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var MAX = 6;       /* максимум предметов на экране */
+    var STEP = 180;    /* пикселей движения мыши до нового предмета */
+    var GAP = 600;     /* минимум мс между появлениями */
+    var SKIP = '.pink-box-section, .loc-card, .book-ig'; /* здесь эффекта нет */
+    var ONLY = null;   /* null = везде; например '.glam-card, .hero-photo-card' = только над фото */
+    var COLORS = ['#e8a5b8', '#e3be96', '#f7d6e0'];
+    var cv = $('#fx'), ctx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var list = [], raf = 0, lastX = null, lastY = null, dist = 0, lastT = 0, kindN = 0;
+
+    function resize() {
+      cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    addEventListener('resize', resize);
+
+    function rr(x, y, w, h, r) {
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h);
+      ctx.fill();
     }
 
-    function sendBooking(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const date = document.getElementById('date').value;
-      const service = document.getElementById('service').value;
-
-      const text = `Здравствуйте! Хочу записаться.%0AИмя: ${encodeURIComponent(name)}%0AКонтакты: ${encodeURIComponent(phone)}%0AДата: ${date}%0AУслуга: ${encodeURIComponent(service)}`;
-      
-      navigator.clipboard.writeText(decodeURIComponent(text)).catch(() => {});
-
-      alert('Данные заявки скопированы! Переходим в Instagram.');
-      window.open('https://www.instagram.com/nikolaeva_irina_hair?exln=MW15ZDN3NW9yNzVuag==', '_blank');
+    function spawn(x, y, dx, dy) {
+      var n = performance.now();
+      if (n - lastT < GAP) return;
+      lastT = n;
+      if (list.length >= MAX) list.shift();
+      var a = Math.atan2(dy, dx) + (Math.random() - .5) * 1.2, sp = .5 + Math.random() * .5;
+      list.push({
+        x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - .25,
+        s: 8 + Math.random() * 5, c: COLORS[(Math.random() * COLORS.length) | 0],
+        k: kindN++ % 2, r: Math.random() * 6.28, vr: (Math.random() - .5) * .05,
+        t: 0, life: 100 + Math.random() * 50
+      });
+      if (!raf) raf = requestAnimationFrame(tick);
     }
-  </script>
+
+    function draw(b, al) {   /* k=0 расчёска, k=1 фен — появляются по очереди */
+      var s = b.s;
+      ctx.save();
+      ctx.translate(b.x, b.y);
+      ctx.rotate(b.r);
+      ctx.globalAlpha = al;
+      if (b.k === 0) {
+        ctx.fillStyle = b.c;
+        rr(-s * 1.6, -s * .65, s * 3.2, s * .5, s * .22);                                    /* спинка */
+        for (var i = 0; i < 12; i++) rr(-s * 1.56 + i * s * .285, -s * .2, s * .15, s * 1.15, s * .07);   /* зубцы */
+        ctx.globalAlpha = al * .55;
+        ctx.fillStyle = '#fff';
+        rr(-s * 1.4, -s * .55, s * 2.2, s * .1, s * .05);                                    /* блик */
+      } else {
+        ctx.save();
+        ctx.translate(-s * .45, s * .35);
+        ctx.rotate(.22);
+        ctx.fillStyle = '#b86a82'; rr(-s * .27, 0, s * .54, s * 1.45, s * .22);              /* ручка */
+        ctx.fillStyle = '#1e1319';
+        ctx.beginPath(); ctx.arc(0, s * 1.15, s * .1, 0, 6.283); ctx.fill();                  /* петля */
+        ctx.restore();
+        ctx.fillStyle = b.c;       rr(-s * 1.25, -s * .7, s * 1.9, s * 1.4, s * .6);         /* корпус */
+        ctx.fillStyle = '#e3be96'; rr(s * .55, -s * .5, s * .7, s * 1.0, s * .15);           /* насадка */
+        ctx.globalAlpha = al * .5;
+        ctx.fillStyle = '#1e1319';
+        for (var j = 0; j < 3; j++) rr(-s * 1.1, -s * .3 + j * s * .3, s * .35, s * .08, s * .04);        /* решётка */
+        ctx.globalAlpha = al * .6;
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = s * .08; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.arc(s * 1.2, 0, s * .35, -.8, .8); ctx.stroke();                 /* поток воздуха */
+        ctx.beginPath(); ctx.arc(s * 1.2, 0, s * .65, -.7, .7); ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (var i = list.length - 1; i >= 0; i--) {
+        var b = list[i];
+        if (++b.t > b.life) { list.splice(i, 1); continue; }
+        b.vy -= .004;
+        b.x += b.vx; b.y += b.vy; b.r += b.vr;
+        draw(b, Math.min(.85, (b.life - b.t) / 35, b.t / 10));
+      }
+      raf = list.length ? requestAnimationFrame(tick) : 0;
+    }
+
+    function allowed(e) {
+      var t = e.target;
+      if (!t || !t.closest || t.closest(SKIP)) return false;
+      return !ONLY || !!t.closest(ONLY);
+    }
+
+    addEventListener('pointermove', function (e) {
+      if (!allowed(e)) { lastX = null; return; }
+      if (lastX !== null) {
+        var dx = e.clientX - lastX, dy = e.clientY - lastY;
+        dist += Math.hypot(dx, dy);
+        if (dist > STEP) { dist = 0; spawn(e.clientX, e.clientY, dx, dy); }
+      }
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+
+    addEventListener('pointerdown', function (e) {   /* тап на телефоне */
+      if (allowed(e)) spawn(e.clientX, e.clientY, Math.random() - .5, -.5);
+    }, { passive: true });
+  })();
+
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
