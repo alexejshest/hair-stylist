@@ -439,40 +439,60 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
   $$('.lang-btn').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
 
   try {
-  /* ---------- Портфолио: работы по разделам ---------- */
-  /* Фото кладите в images/<раздел>/1.jpg, 2.jpg, 3.jpg …  (n — сколько работ в разделе) */
-  var CATS = [
-    { k: 'wedding', tag: 'Bridal Style',    n: 4 },
-    { k: 'evening', tag: 'Evening Style',   n: 4 },
-    { k: 'curls',   tag: 'Hollywood Waves', n: 4 },
-    { k: 'low',     tag: 'Low Bun',         n: 4 }
-  ];
-  var ALL_PER_CAT = 1;   /* сколько работ из каждого раздела показывать во вкладке «Все» */
-  var STOCK = ['photo-1522337360788-8b13dee7a37e', 'photo-1519699047748-de8e457a634e', 'photo-1487412720507-e7ab37603c6f', 'photo-1560066984-138dadb4c035'];
-  var WORKS = [];
-  CATS.forEach(function (c) {
-    for (var i = 1; i <= c.n; i++) {
-      WORKS.push({
-        k: c.k, tag: c.tag, i: i, base: 'images/' + c.k + '/' + i, src: 'images/' + c.k + '/' + i + '.jpg',
-        fb: 'https://images.unsplash.com/' + STOCK[WORKS.length % STOCK.length] + '?auto=format&fit=crop&w=600&q=80'
-      });
+    /* ---------- Портфолио: фото и видео ---------- */
+    var CATS = [
+      { k: 'wedding', tag: 'Bridal Style', n: 4 },
+      { k: 'evening', tag: 'Evening Style', n: 4 },
+      { k: 'curls', tag: 'Hollywood Waves', n: 4 },
+      { k: 'low', tag: 'Low Bun', n: 4 }
+    ];
+    var ALL_PER_CAT = 1; 
+    var STOCK = ['photo-1522337360788-8b13dee7a37e', 'photo-1519699047748-de8e457a634e', 'photo-1487412720507-e7ab37603c6f', 'photo-1560066984-138dadb4c035'];
+    var WORKS = [];
+    
+    CATS.forEach(function (c) {
+      for (var i = 1; i <= c.n; i++) {
+        // Пример добавления видео вместо конкретной фото (например, для первой работы в категории wedding)
+        var isVideo = (c.k === 'wedding' && i === 1); 
+
+        WORKS.push({
+          k: c.k, 
+          tag: c.tag, 
+          i: i, 
+          type: isVideo ? 'video' : 'img',
+          src: isVideo ? 'images/wedding-video.mp4' : 'images/' + c.k + '/' + i + '.jpg',
+          poster: isVideo ? 'images/avatar.jpg' : '',
+          base: 'images/' + c.k + '/' + i, 
+          fb: 'https://images.unsplash.com/' + STOCK[WORKS.length % STOCK.length] + '?auto=format&fit=crop&w=600&q=80'
+        });
+      }
+    });
+
+    var wrap = $('#filters'), grid = $('#gallery'), cur = 'all', closeT, swapT;
+
+    function pick(k) { return WORKS.filter(function (w) { return k === 'all' ? w.i <= ALL_PER_CAT : w.k === k; }); }
+    
+    function img(w, attrs) {
+      if (w.type === 'video') {
+        return '<video src="' + w.src + '" poster="' + w.poster + '" controls playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;"></video>';
+      }
+      return '<img src="' + w.src + '" alt="' + w.tag + '" ' + (attrs || '') + ' decoding="async" data-base="' + w.base + '" data-fb="' + w.fb.replace(/&/g, '&amp;') + '">';
     }
-  });
+    
+    function card(w, n) {
+      return '<div class="glam-card" style="--i:' + n + '">' + img(w, 'loading="lazy"') + '<div class="glam-card-overlay"><h3 class="glam-card-tag">' + w.tag + '</h3><span class="glam-card-sub">Work #' + w.i + '</span></div></div>';
+    }
 
-  var wrap = $('#filters'), grid = $('#gallery'), cur = 'all', closeT, swapT;
-
-  function pick(k) { return WORKS.filter(function (w) { return k === 'all' ? w.i <= ALL_PER_CAT : w.k === k; }); }
-  function img(w, attrs) {
-    return `<img src="${w.src}" alt="${w.tag}" ${attrs || ''} decoding="async" data-base="${w.base}" data-fb="${w.fb.replace(/&/g, '&amp;')}">`;
-  }
-  function card(w, n) {
-    return `<div class="glam-card" style="--i:${n}">${img(w, 'loading="lazy"')}<div class="glam-card-overlay"><div class="glam-card-tag">${w.tag}</div><div class="glam-card-sub" data-i18n="cat_${w.k}"></div></div></div>`;
-  }
-  function render(k, instant) {
-    function build() {
-      grid.innerHTML = pick(k).map(card).join('');
-      tr(grid);
-      grid.classList.remove('swap');
+    function render(k, instant) {
+      function build() {
+        grid.innerHTML = pick(k).map(card).join('');
+        tr(grid);
+        grid.classList.remove('swap');
+      }
+      if (instant) { build(); return; }
+      grid.classList.add('swap');
+      clearTimeout(swapT);
+      swapT = setTimeout(build, 220);
     }
     clearTimeout(swapT);
     if (instant) { build(); return; }
