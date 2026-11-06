@@ -40,7 +40,8 @@
   --text-white:#fff;--text-muted:#c9b3bc;
   --font-title:'Noto Serif Display','Cormorant Garamond',Georgia,serif;--font-body:'Manrope',system-ui,sans-serif;
   --shadow-glam:0 15px 40px rgba(0,0,0,.4);
-  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease:cubic-bezier(.22,.61,.36,1);--ease-io:cubic-bezier(.76,0,.24,1);
+  --card-fs:clamp(2.2rem,4.8vw,3.8rem);--hero-fs:clamp(3rem,10vw,7.5rem);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -100,35 +101,49 @@ nav a:hover{color:var(--gold-accent)}
 .section-subtitle{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-accent);display:block;margin-bottom:8px}
 .section-title{font-family:var(--font-title);font-size:clamp(2rem,5.5vw,3.4rem);letter-spacing:-.015em;font-weight:300;line-height:1.1}
 
-/* CATEGORIES */
-.circles-wrap{display:flex;justify-content:center;flex-wrap:wrap;gap:25px;margin-bottom:45px;position:relative}
-.circle-item{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;background:none;border:none;color:var(--text-white)}
-.circle-thumb{width:90px;height:90px;border-radius:50%;padding:3px;border:1px solid rgba(227,190,150,.3);transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
-.circle-thumb img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.circle-item:hover .circle-thumb,.circle-item.active .circle-thumb{border-color:var(--gold-accent);box-shadow:0 0 20px rgba(227,190,150,.4);transform:scale(1.05)}
-.circle-title{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);transition:color .3s}
-.circle-item.active .circle-title{color:var(--gold-accent);font-weight:600}
+/* SHOWCASE: видео-карточки */
+.showcase{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.show-card{position:relative;display:block;aspect-ratio:4/3;border-radius:20px;overflow:hidden;isolation:isolate;color:#fff;text-decoration:none;border:1px solid rgba(227,190,150,.25);box-shadow:var(--shadow-glam);background:radial-gradient(circle at 30% 20%,rgba(232,165,184,.28),transparent 55%),linear-gradient(160deg,#3a2230,#1e1319);transition:transform .5s var(--ease),border-color .4s,opacity .5s}
+.show-media{position:absolute;inset:0}
+.show-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;transition:opacity .7s ease,transform 1.2s var(--ease)}
+.show-media video.ready{opacity:1}
+.show-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,11,16,.62),rgba(20,11,16,.15) 55%,rgba(20,11,16,.42))}
+.show-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.show-eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-accent)}
+.show-title{font-family:var(--font-title);font-weight:300;font-size:var(--card-fs);line-height:1.02;letter-spacing:-.015em;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.show-go{position:absolute;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.45);background:rgba(30,19,25,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:1.2rem;transition:transform .4s var(--ease),background .3s,color .3s}
+@media (hover:hover){
+  .show-card:hover{border-color:var(--gold-accent);transform:translateY(-4px)}
+  .show-card:hover video{transform:scale(1.04)}
+  .show-card:hover .show-go{background:var(--gold-accent);color:#1a0e14;transform:translateX(4px)}
+}
+.showcase.is-opening .show-card:not(.is-active){opacity:.3;transform:scale(.97)}
 
-.circle-thumb{display:block}
-.cat-pop{position:absolute;top:calc(100% + 14px);left:50%;z-index:30;width:min(580px,calc(100vw - 32px));padding:14px;border-radius:20px;background:rgba(30,19,25,.96);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(227,190,150,.35);box-shadow:var(--shadow-glam);opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) scale(.6);transform-origin:var(--ox,50%) 0;transition:opacity .3s var(--ease),transform .45s var(--ease),visibility 0s .45s}
-.cat.open .cat-pop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) scale(1);transition-delay:0s}
-.cat-pop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:10px}
-.cat-pop-grid img, .cat-pop-grid video{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;background:#2d1c26;cursor:pointer;opacity:0;transform:scale(.8);transition:opacity .35s var(--ease),transform .45s var(--ease)}
-.cat.open .cat-pop-grid img, .cat.open .cat-pop-grid video{opacity:1;transform:none;transition-delay:calc(var(--i,0)*50ms + 100ms)}
-.cat.open .cat-pop-grid img:hover, .cat.open .cat-pop-grid video:hover{transform:scale(1.05);transition-delay:0s}
+/* EXPANDER: карточка раскрывается на весь экран */
+.expander{position:fixed;z-index:130;overflow:hidden;border-radius:20px;border:1px solid rgba(227,190,150,.25);background:#1e1319;transition:top .85s var(--ease-io),left .85s var(--ease-io),width .85s var(--ease-io),height .85s var(--ease-io),border-radius .85s var(--ease-io),border-color .85s}
+.expander .show-title{transition:font-size .85s var(--ease-io)}
+.expander .show-go{transition:opacity .3s}
+.expander.is-full{border-color:transparent}
+.expander.is-full .show-title{font-size:var(--hero-fs)}
+.expander.is-full .show-go{opacity:0}
 
-/* CARDS */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
-.glam-card{position:relative;height:400px;border-radius:16px;overflow:hidden;border:1px solid rgba(227,190,150,.2);box-shadow:var(--shadow-glam);background:#2d1c26;transition:transform .4s var(--ease),opacity .3s ease,border-color .4s}
-.glam-card{animation:fadeUp .55s var(--ease) backwards;animation-delay:calc(var(--i,0)*70ms)}
-.cards-grid{transition:opacity .22s ease,transform .22s ease}
-.cards-grid.swap{opacity:0;transform:translateY(8px)}
-@media (hover:hover){.glam-card:hover{transform:translateY(-6px);border-color:var(--gold-accent)}}
-.glam-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-@media (hover:hover){.glam-card:hover img{transform:scale(1.05)}}
-.glam-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,11,16,.85) 0%,rgba(20,11,16,.1) 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:25px;text-align:center}
-.glam-card-tag{font-family:var(--font-title);font-size:1.75rem;font-style:italic;font-weight:300;margin-bottom:4px}
-.glam-card-sub{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-accent)}
+/* SECTION PAGE: внутренняя страница раздела */
+html.sec-open{overflow:hidden}
+.sec{position:fixed;inset:0;z-index:120;background:var(--bg-dark)}
+.sec[hidden]{display:none}
+.sec.pre{opacity:0;pointer-events:none}
+.sec-scroll{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;scroll-behavior:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sec-scroll::-webkit-scrollbar{display:none}
+.sec-back{position:absolute;z-index:6;top:calc(16px + env(safe-area-inset-top,0px));left:16px;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:40px;border:1px solid rgba(227,190,150,.45);background:rgba(30,19,25,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s,transform .3s var(--ease)}
+.sec-back:hover{background:var(--gold-accent);color:#1a0e14}
+.sec-hero{position:relative;height:100vh;height:100dvh;min-height:420px;overflow:hidden;background:radial-gradient(circle at 30% 20%,rgba(232,165,184,.28),transparent 55%),linear-gradient(160deg,#3a2230,#1e1319)}
+.sec-hero .show-title{font-size:var(--hero-fs)}
+.sec-hint{position:absolute;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);font-size:1.4rem;color:var(--gold-accent);animation:bob 2.2s ease-in-out infinite}
+.sec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:22px;width:min(1200px,calc(100% - 32px));margin:0 auto;padding:56px 0 24px}
+.sec-grid .show-card{aspect-ratio:4/5;animation:fadeUp .6s var(--ease) backwards;animation-delay:calc(var(--i,0)*70ms)}
+.sec-grid .show-title{font-size:clamp(2rem,4vw,3rem)}
+.sec-empty{text-align:center;color:var(--text-muted);padding:10px 16px 90px;font-weight:300}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
 /* PRICES */
 .pink-box-section{background:var(--bg-pink-soft);color:#2b1722;border-radius:24px;padding:60px 40px;margin:40px 0;box-shadow:0 20px 50px rgba(0,0,0,.3)}
@@ -188,6 +203,8 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
 @keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 
 @media (max-width:850px){
+  .showcase{grid-template-columns:1fr;gap:16px}
+  .show-card{aspect-ratio:4/5}
   html{scroll-padding-top:125px}
   .nav-wrap{flex-wrap:wrap}
   nav{order:3;width:100%;justify-content:center;gap:18px;overflow-x:auto;padding-top:10px}
@@ -200,10 +217,6 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
   .pink-box-section{padding:35px 20px}
 }
 @media (max-width:560px){
-  .circles-wrap{gap:14px 12px}
-  .circle-thumb{width:68px;height:68px}
-  .circle-title{font-size:.64rem;letter-spacing:.08em}
-  .cat-pop-grid{grid-template-columns:repeat(3,1fr)}
   .brand-text small{display:none}
   .brand-text{font-size:.9rem;letter-spacing:.1em}
   .header-actions .btn{display:none}
@@ -270,8 +283,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
       <h2 class="section-title" data-i18n="port_title">Категории причёсок</h2>
     </div>
 
-    <div class="circles-wrap" id="filters"></div>
-    <div class="cards-grid" id="gallery"></div>
+    <div class="showcase reveal" id="showcase"></div>
   </section>
 
   <section class="pink-box-section reveal" id="prices">
@@ -350,6 +362,14 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
   <div class="container"><p>© IRINA HAIR STYLIST (@nikolaeva_irina_hair) · ул. 26 Мая, 52 · Batumi, Georgia</p></div>
 </footer>
 
+<div class="sec" id="sec" role="dialog" aria-modal="true" hidden>
+  <button type="button" class="sec-back" id="sec-back" data-i18n-label="back_label"><span aria-hidden="true">←</span><span data-i18n="back">Назад</span></button>
+  <div class="sec-scroll" id="sec-scroll">
+    <div class="sec-hero" id="sec-hero"></div>
+    <div class="sec-grid" id="sec-grid"></div>
+    <p class="sec-empty" id="sec-empty" hidden data-i18n="sec_empty">Видео в этом разделе скоро появятся.</p>
+  </div>
+</div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <button type="button" class="music-btn" id="music-btn" aria-pressed="false" data-i18n-label="music_btn"><i></i><i></i><i></i></button>
 
@@ -372,6 +392,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
       f3: "Выезд в пределах Батуми (2 мастера)", f4: "Ранние сборы до 08:00 (2 мастера)",
       p5: "Выезд за пределы Батуми", f5: "Выезд за пределы Батуми (2 мастера)",
       far_note: "Сумма обсуждается индивидуально в зависимости от расстояния", ask: "по договорённости",
+      back: "Назад", back_label: "Вернуться к разделам", sec_empty: "Видео в этом разделе скоро появятся.",
       music_btn: "Фоновая музыка",
       loc_title: "Студия в Батуми", loc_addr: "ул. 26 Мая, 52",
       loc_note: "Принимаю в студии или выезжаю на дом.",
@@ -397,6 +418,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
       f3: "Batumi City Outcall (2 Artists)", f4: "Early Morning (2 Artists, before 08:00)",
       p5: "Outcall outside Batumi", f5: "Outcall outside Batumi (2 Artists)",
       far_note: "The price depends on the distance and is agreed individually", ask: "to be agreed",
+      back: "Back", back_label: "Back to categories", sec_empty: "Videos for this section are coming soon.",
       music_btn: "Background music",
       loc_title: "Studio in Batumi", loc_addr: "26 May St, 52",
       loc_note: "Available at the studio or for home calls.",
@@ -439,118 +461,222 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
   $$('.lang-btn').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
 
   try {
-  /* ---------- Портфолио: работы по разделам ---------- */
-  /* Фото кладите в images/<раздел>/1.jpg, 2.jpg, 3.jpg … Видео туда же: 1.mp4, 2.mp4 и т.д. */
+  /* ---------- Портфолио: видео-витрина и страницы разделов ---------- */
+  /* Видео кладите в images/<раздел>/1.mp4, 2.mp4, 3.mp4 …  Видео №1 крутится на главной карточке раздела.
+     n — максимум видео в разделе: номера, для которых файла нет, сайт скроет сам. */
   var CATS = [
-    { k: 'wedding', tag: 'Bridal Style',    n: 4 },
-    { k: 'evening', tag: 'Evening Style',   n: 4 },
-    { k: 'curls',   tag: 'Hollywood Waves', n: 4 },
-    { k: 'low',     tag: 'Low Bun',         n: 4 }
+    { k: 'wedding', tag: 'Bridal Style',    n: 8 },
+    { k: 'evening', tag: 'Evening Style',   n: 8 },
+    { k: 'curls',   tag: 'Hollywood Waves', n: 8 },
+    { k: 'low',     tag: 'Low Bun',         n: 8 }
   ];
-  var ALL_PER_CAT = 1;   /* сколько работ из каждого раздела показывать во вкладке «Все» */
-  var STOCK = ['photo-1522337360788-8b13dee7a37e', 'photo-1519699047748-de8e457a634e', 'photo-1487412720507-e7ab37603c6f', 'photo-1560066984-138dadb4c035'];
-  var WORKS = [];
-  
-  CATS.forEach(function (c) {
-    for (var i = 1; i <= c.n; i++) {
-      // Автоматически проверяем: если есть видео .mp4, используем его для категорий, иначе фото
-      WORKS.push({
-        k: c.k, tag: c.tag, i: i, base: 'images/' + c.k + '/' + i, 
-        src: 'images/' + c.k + '/' + i + '.jpg',
-        videoSrc: 'images/' + c.k + '/' + i + '.mp4', // путь к видеофайлу
-        fb: 'https://images.unsplash.com/' + STOCK[WORKS.length % STOCK.length] + '?auto=format&fit=crop&w=600&q=80'
-      });
-    }
-  });
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var showcase = $('#showcase'), sec = $('#sec'), secScroll = $('#sec-scroll'), secHero = $('#sec-hero');
+  var secGrid = $('#sec-grid'), secEmpty = $('#sec-empty'), secBack = $('#sec-back');
+  var current = null, busy = false, hist = false, pending = 0;
 
-  var wrap = $('#filters'), grid = $('#gallery'), cur = 'all', closeT, swapT;
-
-  function pick(k) { return WORKS.filter(function (w) { return k === 'all' ? w.i <= ALL_PER_CAT : w.k === k; }); }
-  
-  function img(w, attrs) {
-    return `<img src="${w.src}" alt="${w.tag}" ${attrs || ''} decoding="async" data-base="${w.base}" data-fb="${w.fb.replace(/&/g, '&amp;')}">`;
+  function byKey(k) { return CATS.filter(function (c) { return c.k === k; })[0]; }
+  function vid(k, i, preload) {
+    return '<video src="images/' + k + '/' + i + '.mp4"' + (reduce ? '' : ' autoplay') +
+      ' muted loop playsinline preload="' + preload + '" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true"></video>';
   }
-
-  // Главная сетка («Все») — всегда фото
-  function card(w, n) {
-    return `<div class="glam-card" style="--i:${n}">${img(w, 'loading="lazy"')}<div class="glam-card-overlay"><div class="glam-card-tag">${w.tag}</div><div class="glam-card-sub" data-i18n="cat_${w.k}"></div></div></div>`;
+  function playV(v) { if (reduce || !v) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  function inView(v) {
+    if (!v.offsetParent) return false;
+    var r = v.getBoundingClientRect();
+    return r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth;
   }
-
-  // Внутренние категории — бесшовные видео-билборды без элементов управления
- function popCard(w, n) {
-  const isFirst = w.i === 1;
-  return `
-    <div style="position:relative;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#2d1c26;--i:${n}">
-      ${isFirst ? `
-        <video src="${w.videoSrc}" autoplay muted loop playsinline preload="metadata" 
-               style="width:100%;height:100%;object-fit:cover;pointer-events:none;display:block;"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        </video>
-      ` : ''}
-      <img src="${w.src}" alt="${w.tag}" loading="lazy" decoding="async" 
-           style="display:${isFirst ? 'none' : 'block'};width:100%;height:100%;object-fit:cover;">
-    </div>`;
-}
-
-  function render(k, instant) {
-    function build() {
-      grid.innerHTML = pick(k).map(card).join('');
-      tr(grid);
-      grid.classList.remove('swap');
-    }
-    clearTimeout(swapT);
-    if (instant) { build(); return; }
-    grid.classList.add('swap');
-    swapT = setTimeout(build, 220);
+  function fullRect() { return { top: 0, left: 0, width: root.clientWidth, height: innerHeight }; }
+  function setRect(el, r, full) {
+    el.style.top = r.top + 'px'; el.style.left = r.left + 'px';
+    el.style.width = r.width + 'px'; el.style.height = r.height + 'px';
+    el.style.borderRadius = full ? '0px' : '20px';
   }
+  function setInert(on) { $$('main, header, footer').forEach(function (el) { try { el.inert = on; } catch (e) {} }); }
 
-  function openCat(el) {
-    clearTimeout(closeT);
-    var pop = el.querySelector('.cat-pop');
-    pop.style.setProperty('--ox', (el.offsetLeft + el.offsetWidth / 2 - (wrap.clientWidth - pop.offsetWidth) / 2) + 'px');
-    $$('.cat', wrap).forEach(function (c) { c.classList.toggle('open', c === el); });
-  }
-
-  function closeCats(d) {
-    clearTimeout(closeT);
-    closeT = setTimeout(function () { $$('.cat', wrap).forEach(function (c) { c.classList.remove('open'); }); }, d);
-  }
-
-  function select(k) {
-    if (k === cur) return;
-    cur = k;
-    $$('.circle-item', wrap).forEach(function (b) {
-      var on = b.dataset.filter === k;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-pressed', on);
+  /* видео стартует/ставится на паузу вместе с видимостью карточки */
+  var vio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      var v = en.target.querySelector('video');
+      if (!v) return;
+      if (en.isIntersecting) playV(v); else v.pause();
     });
-    render(k, false);
-  }
+  }, { threshold: 0.15 }) : null;
 
-  ['all'].concat(CATS.map(function (c) { return c.k; })).forEach(function (k) {
-    var list = pick(k), el = document.createElement('div');
-    el.className = 'cat';
-    
-    // Рендерим выпадающие списки (внутри категорий будут видео-билборды)
-    var popContent = (k === 'all') 
-      ? list.map(function(w, n){ return img(w, 'loading="lazy" style="--i:' + n + '"'); }).join('')
-      : list.map(function(w, n){ return popCard(w, n); }).join('');
+  addEventListener('loadeddata', function (e) { if (e.target.tagName === 'VIDEO') e.target.classList.add('ready'); }, true);
+  addEventListener('error', function (e) {
+    var v = e.target;
+    if (!v || v.tagName !== 'VIDEO') return;
+    var card = v.closest('.show-card');
+    if (!card) return;
+    if (card.parentNode === secGrid) { if (vio) vio.unobserve(card); card.remove(); secEmpty.hidden = !!$('.show-card', secGrid) ? true : false; }
+    else card.classList.add('no-video');
+  }, true);
 
-    el.innerHTML = `<button type="button" class="circle-item${k === 'all' ? ' active' : ''}" data-filter="${k}" aria-pressed="${k === 'all'}"><span class="circle-thumb">${img(list[0], 'loading="lazy"')}</span><span class="circle-title" data-i18n="cat_${k}"></span></button><div class="cat-pop"><div class="cat-pop-grid">${popContent}</div></div>`;
-    
-    el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') openCat(el); });
-    el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') closeCats(200); });
-    el.addEventListener('focusin', function () { openCat(el); });
-    el.addEventListener('focusout', function () { closeCats(150); });
-    el.querySelector('.circle-item').addEventListener('click', function () { openCat(el); select(k); });
-    el.querySelector('.cat-pop').addEventListener('click', function () { select(k); closeCats(0); });
-    wrap.appendChild(el);
+  /* ----- главная: большие карточки ----- */
+  showcase.innerHTML = CATS.map(function (c) {
+    return '<a class="show-card" href="#sec-' + c.k + '" data-k="' + c.k + '">' +
+      '<div class="show-media">' + vid(c.k, 1, 'auto') + '</div><div class="show-shade"></div>' +
+      '<div class="show-text"><span class="show-eyebrow">' + c.tag + '</span><span class="show-title" data-i18n="cat_' + c.k + '"></span></div>' +
+      '<span class="show-go" aria-hidden="true">→</span></a>';
+  }).join('');
+  tr(showcase);
+  $$('.show-card', showcase).forEach(function (card) { if (vio) vio.observe(card); });
+
+  showcase.addEventListener('click', function (e) {
+    var card = e.target.closest('.show-card');
+    if (!card || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    openSection(card.dataset.k, card, true, 'push');
   });
 
-  document.addEventListener('pointerdown', function (e) { if (!e.target.closest('.cat')) closeCats(0); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCats(0); });
-  tr(wrap);
-  render('all', true);
+  /* ----- раскрытие карточки ----- */
+  function makeExpander(srcEl, rect, v, full) {
+    var ex = document.createElement('div');
+    ex.className = 'expander' + (full ? ' is-full' : '');
+    ex.innerHTML = '<div class="show-media"></div><div class="show-shade"></div>';
+    ex.appendChild($('.show-text', srcEl).cloneNode(true));
+    if (!full) { var go = $('.show-go', srcEl); if (go) ex.appendChild(go.cloneNode(true)); }
+    if (v) $('.show-media', ex).appendChild(v);
+    setRect(ex, rect, full);
+    document.body.appendChild(ex);
+    playV(v);
+    return ex;
+  }
+  function whenDone(el, cb) {
+    var done = false, t;
+    function end() { if (done) return; done = true; clearTimeout(t); el.removeEventListener('transitionend', onEnd); cb(); }
+    function onEnd(e) { if (e.target === el && e.propertyName === 'height') end(); }
+    el.addEventListener('transitionend', onEnd);
+    t = setTimeout(end, 1200);
+  }
+
+  function buildSection(c) {
+    secHero.innerHTML = '<div class="show-media"></div><div class="show-shade"></div>' +
+      '<div class="show-text"><span class="show-eyebrow">' + c.tag + '</span><h2 class="show-title" data-i18n="cat_' + c.k + '"></h2></div>' +
+      '<span class="sec-hint" aria-hidden="true">↓</span>';
+    secGrid.innerHTML = '';
+    secEmpty.hidden = true;
+    tr(sec);
+    sec.setAttribute('aria-label', $('.show-title', secHero).textContent);
+    secScroll.scrollTop = 0;
+  }
+  function mountHero(v) { if (v) { $('.show-media', secHero).appendChild(v); playV(v); } }
+  function fillGrid(c) {
+    var html = '';
+    for (var i = 1; i <= c.n; i++) {
+      html += '<div class="show-card" style="--i:' + (i - 1) + '"><div class="show-media">' + vid(c.k, i, reduce ? 'auto' : 'metadata') + '</div>' +
+        '<div class="show-shade"></div><div class="show-text"><span class="show-eyebrow">' + c.tag + '</span>' +
+        '<span class="show-title">' + (i < 10 ? '0' : '') + i + '</span></div></div>';
+    }
+    secGrid.innerHTML = html;
+    $$('.show-card', secGrid).forEach(function (card) { if (vio) vio.observe(card); });
+  }
+  function clearGrid() {
+    $$('.show-card', secGrid).forEach(function (card) {
+      if (vio) vio.unobserve(card);
+      var v = card.querySelector('video');
+      if (v) { v.pause(); v.removeAttribute('src'); v.load(); }
+    });
+    secGrid.innerHTML = '';
+  }
+  function pauseHome() { $$('video', showcase).forEach(function (v) { v.pause(); }); }
+  function resumeHome() { $$('video', showcase).forEach(function (v) { if (inView(v)) playV(v); }); }
+
+  function openSection(k, card, animate, mode) {
+    var c = byKey(k);
+    if (!c || busy || current) return;
+    card = card || $('.show-card[data-k="' + k + '"]', showcase);
+    busy = true;
+    current = { c: c, card: card };
+    if (mode === 'push') { try { history.pushState({ sec: k }, '', '#sec-' + k); hist = true; } catch (e) { hist = false; } }
+    else hist = mode === 'pop';
+    var v = card.querySelector('video'), r = card.getBoundingClientRect(), ex = null;
+    buildSection(c);
+    if (animate && !reduce) {
+      ex = makeExpander(card, r, v, false);
+      showcase.classList.add('is-opening');
+      card.classList.add('is-active');
+    }
+    card.style.visibility = 'hidden';
+    root.classList.add('sec-open');
+    setInert(true);
+    sec.hidden = false;
+    pauseHome();
+    if (!ex) { mountHero(v); finishOpen(); return; }
+    sec.classList.add('pre');
+    void ex.offsetWidth;
+    ex.classList.add('is-full');
+    setRect(ex, fullRect(), true);
+    whenDone(ex, function () {
+      mountHero(v);            /* то же видео «переезжает» в шапку раздела — без скачка кадра */
+      sec.classList.remove('pre');
+      ex.remove();
+      finishOpen();
+    });
+  }
+  function finishOpen() {
+    sec.classList.remove('pre');
+    fillGrid(current.c);
+    busy = false;
+    try { secBack.focus({ preventScroll: true }); } catch (e) {}
+    if (pending) { var p = pending; pending = 0; if (p === 'ui') requestClose(); else { hist = false; doClose(true); } }
+  }
+
+  /* ----- закрытие: раздел схлопывается обратно в карточку ----- */
+  function restoreCard(card, v) {
+    if (v) $('.show-media', card).appendChild(v);
+    card.style.visibility = '';
+    card.classList.remove('is-active');
+    showcase.classList.remove('is-opening');
+    current = null; busy = false; hist = false;
+    resumeHome();
+    try { card.focus({ preventScroll: true }); } catch (e) {}
+  }
+  function doClose(animate) {
+    var card = current.card, v = $('video', secHero), ex = null;
+    busy = true;
+    if (animate && !reduce) ex = makeExpander(secHero, fullRect(), v, true);
+    clearGrid();
+    sec.hidden = true;
+    root.classList.remove('sec-open');
+    setInert(false);
+    var vis = card.getBoundingClientRect();
+    if (vis.bottom < 0 || vis.top > innerHeight) {
+      root.style.scrollBehavior = 'auto';
+      card.scrollIntoView({ block: 'center' });
+      root.style.scrollBehavior = '';
+      vis = card.getBoundingClientRect();
+    }
+    if (!ex) { restoreCard(card, v); return; }
+    void ex.offsetWidth;
+    ex.classList.remove('is-full');
+    setRect(ex, vis, false);
+    whenDone(ex, function () { restoreCard(card, v); ex.remove(); });
+  }
+  function requestClose() {
+    if (!current) return;
+    if (busy) { pending = 'ui'; return; }
+    if (hist) { history.back(); return; }
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    doClose(true);
+  }
+  secBack.addEventListener('click', requestClose);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && current) requestClose(); });
+  addEventListener('popstate', function () {
+    var m = /^#sec-(\w+)$/.exec(location.hash);
+    if (m && byKey(m[1])) { if (!current && !busy) openSection(m[1], null, false, 'pop'); }
+    else if (current) { if (busy) pending = 'pop'; else { hist = false; doClose(true); } }
+  });
+  document.addEventListener('visibilitychange', function () {
+    $$('video').forEach(function (v) {
+      if (document.hidden) v.pause();
+      else if (inView(v) && !(current && showcase.contains(v))) playV(v);
+    });
+  });
+  var m0 = /^#sec-(\w+)$/.exec(location.hash);
+  if (m0 && byKey(m0[1])) openSection(m0[1], null, false, 'init');
 
   } catch (err) { console.error(err); }
 
@@ -712,6 +838,10 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
     if (wantMusic) musicOn();
   }
   addEventListener('click', firstTouch, true);
+  document.addEventListener('visibilitychange', function () {
+    if (!playing || !mctx) return;
+    if (document.hidden) mctx.suspend(); else mctx.resume();
+  });
 
   } catch (err) { console.error(err); }
 
@@ -736,7 +866,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(227,190,150,.1
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var MAX = 6, STEP = 180, GAP = 600;
-    var SKIP = '.pink-box-section, .loc-card, .book-ig, .circles-wrap, .music-btn';
+    var SKIP = '.pink-box-section, .loc-card, .book-ig, .show-card, .sec, .expander, .music-btn';
     var ONLY = null;
     var COLORS = ['#e8a5b8', '#e3be96', '#f7d6e0'];
     var cv = $('#fx'), ctx = cv.getContext('2d');
